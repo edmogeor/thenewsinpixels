@@ -94,8 +94,13 @@ function scaleGrid() {
   $("#reload").css("height", 20*scaler + 'px');
 }
 
+var infocontainerH;
+var infocontainerW;
+
 function draw() {
-  $('#info-container').css('transform', 'translate(' + (mouseX + (20*scaler)) + 'px,' + (mouseY + (20*scaler)) + 'px)');
+  infocontainerH = $("#info-container").height();
+  infocontainerW = $("#info-container").width();
+
   $('#cursor').css('transform', 'translate(' + (mouseX-(cursorWidth/2)) + 'px,' + (mouseY-(cursorWidth/2)) + 'px)');
   var selectedArt = Number(selectedPixel.replace("pixel",""))
   if (selectedPixel!="none" && allInfo[0]!=undefined){
@@ -103,11 +108,16 @@ function draw() {
     $("#headlinetext").html('“ ' + allInfo[selectedArt].articleHeadline + ' ”');
     $("#timetext").html(allInfo[selectedArt].articleTime);
   }
+  if (selectedArt >= 34 && selectedPixel!="none") {
+    $('#info-container').css('transform', 'translate(' + ((mouseX-infocontainerW)-(20*scaler)) + 'px,' + ((mouseY - infocontainerH)-(20*scaler)) + 'px)');
+  }
+  if (selectedArt <= 34 && selectedPixel!="none") {
+    $('#info-container').css('transform', 'translate(' + (mouseX + (20*scaler)) + 'px,' + (mouseY + (20*scaler)) + 'px)');
+  }
 }
 
 var selectedPixel = 'none';
 var retainPixel;
-
 
 function hoverDetection() {
   $( ".pixel" ).hover(
@@ -141,6 +151,7 @@ function setColour() {
     $("#grid-container").css("visibility", 'visible');
     $("#loading").css("display", 'none');
     $('.pixel').animateCss('zoomIn');
+    $("#info-container").css("visibility", 'visible');
   }
 }
 

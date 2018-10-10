@@ -19,7 +19,7 @@ function urlArray(data){
       if (data.articles[i].urlToImage !== null) {
         imgURLs[i] = {
           articleURL: data.articles[i].url,
-          articleTime: moment(data.articles[i].publishedAt).format('DD/MM/YY hh:mm'),
+          articleTime: moment(data.articles[i].publishedAt).format('DD/MM/YY HH:mm'),
           articleSource: data.articles[i].source.name,
           articleHeadline: data.articles[i].title,
           imgURL: "https://cors-anywhere.herokuapp.com/" + data.articles[i].urlToImage
