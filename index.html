@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- © COPYRIGHT GEORGE EDMONDS 2018 -->
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The news in pixels</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.dom.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <script src="libraries/jquery-3.3.1.min.js"></script>
+    <script src="libraries/moment.min.js"></script>
+    <script src="libraries/tinycolor.js"></script>
+    <script src="script/frontend.js"></script>
+    <script src="script/backend.js"></script>
+    <script src="script/animate-jquery.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <style>
+
+    @font-face {
+      font-family: 'Inconsolata-Bold';
+      src: url('assets/inconsolata_bold.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Inconsolata-Regular';
+      src: url('assets/inconsolata_regular.ttf') format('truetype');
+    }
+
+    h7 {
+      font-family: 'Inconsolata-Bold';
+      color: white;
+    }
+
+    h6 {
+      font-family: 'Inconsolata-Regular';
+      color: #5C5C5C;
+    }
+
+    h2 {
+      font-family: 'Inconsolata-Regular';
+      color: white;
+    }
+
+    h1 {
+      font-family: 'Inconsolata-Bold';
+      color: white;
+    }
+
+    #square-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #grid-container {
+      /* visibility: hidden; */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #loading {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-top: 0;
+    }
+
+    #grid {
+      display: grid;
+      height: 100%;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-gap: 20px 20px;
+      grid-template-areas: ". . . . . . ." ". . . . . . ." ". . . . . . ." ". . . . . . ." ". . . . . . ." ". . . . . . ." ". . . . . . .";
+    }
+
+    .cell{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    #header {
+      position:absolute;
+    }
+
+    #number{
+      float:left;
+    }
+
+    #title{
+      margin: 0px;
+    }
+
+
+    #info-container{
+      position: absolute;
+      background-color: black;
+      overflow: hidden;
+      z-index: 999;
+      display: none;
+    }
+
+    #info-header{
+      overflow: hidden;
+    }
+
+    #headline-container{
+      overflow: hidden;
+    }
+
+
+    #sourcetext{
+      float: left;
+      margin:0px;
+    }
+
+    #timetext {
+      float: right;
+    }
+
+    #timetext, #headlinetext{
+      margin:0px;
+    }
+
+    .pixelcanvas{
+      display: none;
+    }
+
+    #cursor {
+      display:none;
+      position: absolute;
+      height: 35px;
+      width:35px;
+      z-index:99999;
+      pointer-events:none;
+    }
+
+    #reload {
+      position: relative;
+      float: right;
+      height:0;
+      width:0;
+      transform: translateY(-25%);
+    }
+    #reload:hover {
+      cursor: pointer;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5b5b5b+0,000000+62,000000+62 */
+      background: #5b5b5b; /* Old browsers */
+      background: -moz-linear-gradient(45deg, #5b5b5b 0%, #000000 62%, #000000 62%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(45deg, #5b5b5b 0%,#000000 62%,#000000 62%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(45deg, #5b5b5b 0%,#000000 62%,#000000 62%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b5b5b', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+    </style>
+
+  </head>
+  <body>
+  <img id="cursor"src="assets/cursor1.png">
+  <div id="info-container">
+    <div id="info-header"><h2 id="sourcetext">Guardian</h2><h6 id="timetext">10/04/18 08:45</h6></div>
+    <div id="headline-container"><h1 id="headlinetext">“Patisserie Valerie shares suspended over '£20m accounting black hole'”</h1></div>
+  </div>
+  <div id="header">
+    <img id="reload"src="assets/reload_icon.svg">
+    <h7 id = "number">N° 52210998</h7>
+    <h6 id = "title">The news in pixels</h6>
+  </div>
+    <div id="square-container">
+      <h1 id="loading">Loading pixel data...</h1>
+      <div id="grid-container">
+        <div id="grid">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
